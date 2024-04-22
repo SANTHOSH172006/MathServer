@@ -37,67 +37,60 @@ math.html
 <head>
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-<title>Area of Square Prism</title>
+<title>Surface area of Right Cylinder</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <style type="text/css">
-body   {
-            background-color: blueviolet;
-        }
-.edge  {
-            display: flex;
-            height: 100vh;
-            width: 100%;    
-            justify-content: center;
-            align-items: center;
-        }
-.box   {
-            display: block;
-            width: 500px;
-            min-height: 300px;
-            font-size: 20px;
-            background: rgb(7,85,152);
-            background:black;
-            border-radius: 10px;
-            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        }
-.formelt  {
-            color: whitesmoke;
-            text-align: center;
-            margin-top: 7px;
-            margin-bottom: 6px;
-            }
-h1 {
-            color: white;
-            text-align: center;
-            padding-top: 22px;
-    }
-input{
-            margin: 5px;
-            padding: 5px;
-            border-radius: 5px;
-            border: none;
-
-     }
+body 
+{
+background-color:purple;
+}
+.edge {
+width: 1440px;
+margin-left: auto;
+margin-right: auto;
+padding-top: 250px;
+padding-left: 300px;
+}
+.box {
+display:block;
+border: Thick dashed black;
+width: 500px;
+min-height: 300px;
+font-size: 20px;
+background-color:black;
+}
+.formelt{
+color:white;
+text-align: center;
+margin-top: 7px;
+margin-bottom: 6px;
+}
+h1
+{
+color:white;
+text-align: center;
+padding-top: 20px;
+}
 </style>
 </head>
 <h1> SANTHOSH.D (212223220099)</h1>
 <body>
 <div class="edge">
 <div class="box">
-<h1>Area of a Square Prism</h1>
+<h1>Surfacearea of right cylinder</h1>
 <form method="POST">
 {% csrf_token %}
 <div class="formelt">
-Side : <input type="text" name="length" value="{{l}}"></input>(in m)<br />
+Radius : <input type="text" name="radius" value="{{r}}"></input>(in m)<br/>
 </div>
 <div class="formelt">
-Height : <input type="text" name="breadth" value="{{b}}"></input>(in m)<br />
+Height : <input type="text" name="height" value="{{h}}"></input>(in m)<br/>
 </div>
 <div class="formelt">
-<input type="submit" value="Calculate"></input><br />
+<input type="submit" value="Calculate"></input><br/>
 </div>
 <div class="formelt">
-Area : <input type="text" name="area" value="{{area}}"></input>m<sup>2</sup><br />
+Area : <input type="text" name="area" value="{{area}}"></input>m<sup>2</sup><br/>
 </div>
 </form>
 </div>
@@ -105,50 +98,35 @@ Area : <input type="text" name="area" value="{{area}}"></input>m<sup>2</sup><br 
 </body>
 </html>
 
-
 views.py
 
 from django.shortcuts import render
-def rectarea(request):
+def surfacearea(request):
     context={}
     context['area'] = "0"
-    context['l'] = "0"
-    context['b'] = "0"
+    context['r'] = "0"
+    context['h'] = "0"
     if request.method == 'POST':
         print("POST method is used")
-        l = request.POST.get('length','0')
-        b = request.POST.get('breadth','0')
+        r = request.POST.get('radius','0')
+        h = request.POST.get('height','0')
         print('request=',request)
-        print('Length=',l)
-        print('Breadth=',b)
-        area = int(l) * int(b)
+        print('Radius=',r)
+        print('Height=',h)
+        area = (2*3.14*int(r) * int(h))+(2*3.14*int(r)*int(r))
         context['area'] = area
-        context['l'] = l
-        context['b'] = b
+        context['r'] = r
+        context['h'] = h
         print('Area=',area)
     return render(request,'ludusapp/math.html',context)
 
-urls.py
+    urls.py
 
-from django.contrib import admin
+    from django.contrib import admin
 from django.urls import path
 from ludusapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('areaofrectangle/',views.rectarea,name="areaofrectangle"),
-    path('',views.rectarea,name="areaofrectangleroot")
+    path('surfacearea/',views.surfacearea,name="surfacearea"),
+    path('',views.surfacearea,name="surfacearearoot")
 ]
-
-
-```
-
-## SERVER SIDE PROCESSING:
-![alt text](<Screenshot 2024-04-08 141156.png>)
-
-## HOMEPAGE:
-![alt text](<Screenshot 2024-04-08 141208.png>)
-
-
-
-## RESULT:
-The program for performing server side processing is completed successfully.
