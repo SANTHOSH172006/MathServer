@@ -120,9 +120,9 @@ def surfacearea(request):
         print('Area=',area)
     return render(request,'ludusapp/math.html',context)
 
-    urls.py
+urls.py
 
-    from django.contrib import admin
+from django.contrib import admin
 from django.urls import path
 from ludusapp import views
 urlpatterns = [
@@ -130,3 +130,13 @@ urlpatterns = [
     path('surfacearea/',views.surfacearea,name="surfacearea"),
     path('',views.surfacearea,name="surfacearearoot")
 ]
+```
+
+## HomePage :
+![alt text](10.png)
+
+## Server Side :
+![alt text](20.png)
+
+## RESULT
+The program for implementing server side processing using basic HTML and CSS is executed successfully.
